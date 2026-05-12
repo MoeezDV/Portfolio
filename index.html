@@ -1,457 +1,1800 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
+
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Moeez Ahmad | MERN Stack Developer</title>
+
+
+
+    <link
+
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+
+      rel="stylesheet"
+
+    />
+
+
+
     <style>
-      :root {
-        --bg: #f5f7fb;
-        --card: #ffffff;
-        --text: #1f2933;
-        --muted: #555;
-        --accent: #2563eb;
-        --accent-gradient: linear-gradient(90deg, #2563eb, #38bdf8);
-      }
-      body.dark {
-        --bg: #0f172a;
-        --card: #020617;
-        --text: #e5e7eb;
-        --muted: #94a3b8;
-        --accent: #38bdf8;
-        --accent-gradient: linear-gradient(90deg, #38bdf8, #0ea5e9);
-      }
+
       * {
+
         margin: 0;
+
         padding: 0;
+
         box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, sans-serif;
+
       }
+
+
+
       html {
+
         scroll-behavior: smooth;
+
       }
+
+
+
       body {
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.7;
-        transition: 0.3s;
+
+        background: #020707;
+
+        color: #f5f5f5;
+
+        font-family: "Inter", sans-serif;
+
         overflow-x: hidden;
+
       }
-      ::selection {
-        background: var(--accent);
-        color: #fff;
+
+
+
+      :root {
+
+        --gold: #d7a12c;
+
+        --light: #f4f1ea;
+
+        --muted: #9ca3af;
+
       }
+
+
+
       header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 70px;
-        background: var(--card);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      header h2 {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 22px;
-        font-weight: 700;
-      }
-      nav a {
-        margin-left: 20px;
-        text-decoration: none;
-        color: var(--text);
-        font-weight: 500;
-        font-size: 14px;
-        position: relative;
-      }
-      nav a::after {
-        content: "";
-        position: absolute;
-        width: 0%;
-        height: 2px;
-        bottom: -4px;
-        left: 0;
-        background: var(--accent);
-        transition: 0.3s;
-      }
-      nav a:hover::after {
+
         width: 100%;
-      }
-      .theme-btn {
-        margin-left: 30px;
-        padding: 6px 14px;
-        border-radius: 20px;
-        border: none;
-        cursor: pointer;
-        background: var(--accent);
-        color: #fff;
-        font-size: 13px;
-        transition: transform 0.2s ease;
-      }
-      .theme-btn:hover {
-        transform: scale(1.1);
-      }
-      .hero {
+
+        padding: 22px 70px;
+
         display: flex;
+
         justify-content: space-between;
+
         align-items: center;
-        padding: 120px 70px;
-        min-height: 100vh;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 999;
+
+        backdrop-filter: blur(12px);
+
+        background: rgba(2, 7, 7, 0.85);
+
       }
-      .hero-text {
-        max-width: 600px;
-      }
-      .hero-text h1 {
-        font-size: 48px;
+
+
+
+      .logo {
+
+        font-size: 40px;
+
+        font-family: "Cormorant Garamond", serif;
+
         font-weight: 700;
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 10px;
+
+        color: var(--light);
+
       }
-      .hero-text h2 {
-        font-size: 28px;
-        color: var(--text);
-        margin-bottom: 20px;
-        min-height: 36px;
+
+
+
+      .logo span {
+
+        color: var(--gold);
+
       }
-      .hero-text p {
-        color: var(--muted);
-        margin-bottom: 30px;
-        max-width: 500px;
+
+
+
+      nav {
+
+        display: flex;
+
+        gap: 40px;
+
       }
-      .hero-buttons button {
-        padding: 12px 28px;
-        border-radius: 25px;
-        border: none;
-        margin-right: 15px;
-        cursor: pointer;
-        font-size: 14px;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-      .hero-buttons button:hover {
-        transform: translateY(-3px);
-      }
-      #hero-img {
-        width: 320px;
-        height: 320px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 5px solid var(--accent);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-        transition: transform 0.4s;
-        margin-right: 100px;
-      }
-      #hero-img:hover {
-        transform: scale(1.06);
-      }
-      section {
-        padding: 100px 70px;
-      }
-      section h2 {
-        text-align: center;
-        margin-bottom: 50px;
-        font-size: 36px;
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .about {
-        max-width: 900px;
-        margin: auto;
-        text-align: center;
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.8;
-      }
-      .skills {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 25px;
-      }
-      .skill {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        border-radius: 16px;
-        padding: 30px 20px;
-        text-align: center;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        transition: transform 0.4s;
-        font-weight: 600;
-      }
-      .skill:hover {
-        transform: translateY(-6px);
-      }
-      .projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-      }
-      .project {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        padding: 25px;
-        border-radius: 16px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        transition: transform 0.4s;
-      }
-      .project:hover {
-        transform: translateY(-8px);
-      }
-      .project h3 {
-        margin-bottom: 10px;
-        color: var(--accent);
-      }
-      .project p {
-        color: var(--muted);
-        margin-bottom: 12px;
-      }
-      .project a {
-        display: inline-block;
-        margin-right: 10px;
+
+
+
+      nav a {
+
         text-decoration: none;
-        color: var(--accent);
-        font-weight: 600;
+
+        color: #b8b8b8;
+
+        font-size: 16px;
+
         transition: 0.3s;
+
       }
-      .project a:hover {
-        opacity: 0.7;
+
+
+
+      nav a span {
+
+        color: var(--gold);
+
+        font-size: 13px;
+
+        margin-right: 5px;
+
       }
-      .contact {
-        text-align: center;
-        color: var(--muted);
-        font-size: 17px;
+
+
+
+      nav a:hover {
+
+        color: white;
+
       }
+
+
+
+      .talk-btn {
+
+        padding: 14px 26px;
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        border-radius: 40px;
+
+        text-decoration: none;
+
+        color: white;
+
+        transition: 0.3s;
+
+      }
+
+
+
+      .talk-btn:hover {
+
+        background: var(--gold);
+
+        color: black;
+
+      }
+
+
+
+      .hero {
+
+        min-height: 100vh;
+
+        padding: 90px 70px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 60px;
+
+      }
+
+
+
+      .hero-left {
+
+        flex: 1;
+
+      }
+
+
+
+      .hero-title {
+
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 150px;
+
+        line-height: 0.9;
+
+        color: var(--light);
+
+      }
+
+
+
+      .hero-title span {
+
+        color: var(--gold);
+
+        font-style: italic;
+
+      }
+
+
+
+      .hero-desc {
+
+        margin-top: 50px;
+
+        display: flex;
+
+        gap: 40px;
+
+      }
+
+
+
+      .hero-desc p {
+
+        color: #9ca3af;
+
+        font-size: 20px;
+
+        line-height: 1.8;
+
+        max-width: 500px;
+
+      }
+
+
+
+      .currently {
+
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+        padding-left: 30px;
+
+      }
+
+
+
+      .currently small {
+
+        color: #777;
+
+        letter-spacing: 3px;
+
+      }
+
+
+
+      .currently h4 {
+
+        margin-top: 20px;
+
+        font-size: 28px;
+
+        line-height: 1.5;
+
+        color: white;
+
+        font-weight: 400;
+
+      }
+
+
+
+      .hero-buttons {
+
+        margin-top: 40px;
+
+        display: flex;
+
+        gap: 20px;
+
+      }
+
+
+
+      .hero-buttons button {
+
+        padding: 16px 30px;
+
+        border: none;
+
+        border-radius: 40px;
+
+        cursor: pointer;
+
+        font-size: 15px;
+
+        transition: 0.3s;
+
+      }
+
+
+
+      .hire {
+
+        background: var(--gold);
+
+        color: black;
+
+        font-weight: 600;
+
+      }
+
+
+
+      .cv {
+
+        background: transparent;
+
+        color: white;
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+      }
+
+
+
+      .hero-buttons button:hover {
+
+        transform: translateY(-4px);
+
+      }
+
+
+
+      .hero-right {
+
+        width: 420px;
+
+      }
+
+
+
+      .image-card {
+
+        
+
+        overflow: hidden;
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        background: #091111;
+
+        position: relative;
+
+          width: 450px;
+          height: 450px;
+         border-radius: 55%;
+
+      }
+
+
+
+      .image-card img {
+
+
+        width: 100%;
+
+        display: block;
+
+        height: 100%;
+
+       
+
+       
+        object-fit: cover;
+
+
+      }
+  ;
+
+      
+
+
+
+      .status {
+
+        position: absolute;
+
+        bottom: 25px;
+
+        left: 25px;
+
+        right: 25px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        color: #ddd;
+
+        font-size: 13px;
+
+        letter-spacing: 2px;
+
+      }
+
+
+
+      .status span:last-child {
+
+        color: var(--gold);
+
+      }
+
+
+
+      section {
+
+        padding: 120px 70px;
+
+      }
+
+
+
+      .section-title {
+
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 100px;
+
+        margin-bottom: 70px;
+
+        line-height: 0.9;
+
+      }
+
+
+
+      .section-title span {
+
+        color: var(--gold);
+
+        font-style: italic;
+
+      }
+
+
+
+      .about-grid {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1.3fr;
+
+        gap: 60px;
+
+      }
+
+
+
+      .about-card {
+
+        padding: 50px;
+
+        border-radius: 30px;
+
+        background: linear-gradient(
+
+          145deg,
+
+          rgba(10, 20, 20, 0.95),
+
+          rgba(10, 15, 15, 0.8)
+
+        );
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+      }
+
+
+
+      .about-card small {
+
+        color: var(--gold);
+
+        letter-spacing: 4px;
+
+      }
+
+
+
+      .about-card h3 {
+
+        margin-top: 20px;
+
+        font-family: "Cormorant Garamond", serif;
+
+        font-size: 70px;
+
+        line-height: 0.95;
+
+      }
+
+
+
+      .about-card h3 span {
+
+        color: var(--gold);
+
+        font-style: italic;
+
+      }
+
+
+
+      .about-card p {
+
+        margin-top: 35px;
+
+        color: #9ca3af;
+
+        line-height: 1.9;
+
+        font-size: 18px;
+
+      }
+
+
+
+      .value-boxes {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 25px;
+
+      }
+
+
+
+      .value {
+
+        padding: 40px;
+
+        border-radius: 28px;
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        background: rgba(8, 15, 15, 0.8);
+
+        transition: 0.4s;
+
+      }
+
+
+
+      .value:hover {
+
+        transform: translateY(-6px);
+
+        border-color: rgba(215, 161, 44, 0.4);
+
+      }
+
+
+
+      .value h4 {
+
+        font-size: 42px;
+
+        font-family: "Cormorant Garamond", serif;
+
+        margin-bottom: 10px;
+
+      }
+
+
+
+      .value p {
+
+        color: #9ca3af;
+
+        line-height: 1.8;
+
+      }
+
+
+
+      .skills-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+        gap: 30px;
+
+      }
+
+
+
+      .skill-card {
+
+        padding: 45px;
+
+        border-radius: 32px;
+
+        background: rgba(8, 15, 15, 0.8);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        min-height: 420px;
+
+        transition: 0.4s;
+
+      }
+
+
+
+      .skill-card:hover {
+
+        transform: translateY(-8px);
+
+        border-color: rgba(215, 161, 44, 0.4);
+
+      }
+
+
+
+      .skill-card h3 {
+
+        font-size: 55px;
+
+        margin-bottom: 30px;
+
+        font-family: "Cormorant Garamond", serif;
+
+      }
+
+
+
+      .skill-card ul {
+
+        list-style: none;
+
+      }
+
+
+
+      .skill-card li {
+
+        margin-bottom: 18px;
+
+        color: #b7b7b7;
+
+        font-size: 20px;
+
+      }
+
+
+
+      .skill-card li::before {
+
+        content: "•";
+
+        color: var(--gold);
+
+        margin-right: 10px;
+
+      }
+
+
+
+      .projects-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+        gap: 30px;
+
+      }
+
+
+
+      .project-card {
+
+        padding: 35px;
+
+        border-radius: 30px;
+
+        background: rgba(8, 15, 15, 0.8);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        transition: 0.4s;
+
+      }
+
+
+
+      .project-card:hover {
+
+        transform: translateY(-8px);
+
+        border-color: rgba(215, 161, 44, 0.4);
+
+      }
+
+
+
+      .project-card h3 {
+
+        font-size: 40px;
+
+        margin-bottom: 15px;
+
+        font-family: "Cormorant Garamond", serif;
+
+      }
+
+
+
+      .project-card p {
+
+        color: #9ca3af;
+
+        line-height: 1.8;
+
+        margin-bottom: 25px;
+
+      }
+
+
+
+      .project-links {
+
+        display: flex;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+      }
+
+
+
+      .project-links a {
+
+        text-decoration: none;
+
+        padding: 10px 18px;
+
+        border-radius: 30px;
+
+        background: rgba(255, 255, 255, 0.06);
+
+        color: white;
+
+        transition: 0.3s;
+
+      }
+
+
+
+      .project-links a:hover {
+
+        background: var(--gold);
+
+        color: black;
+
+      }
+
+
+
+      .contact-box {
+
+        max-width: 700px;
+
+      }
+
+
+
+      .contact-box p {
+
+        color: #9ca3af;
+
+        font-size: 22px;
+
+        margin-bottom: 20px;
+
+      }
+
+
+
+      .contact-box a {
+
+        color: var(--gold);
+
+        text-decoration: none;
+
+      }
+
+
+
       footer {
+
+        padding: 40px;
+
         text-align: center;
-        padding: 40px 20px;
-        color: var(--muted);
-        font-size: 14px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+        color: #777;
+
       }
-      .reveal {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.8s ease;
-      }
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      @media (max-width: 768px) {
-        header {
-          flex-direction: column;
-        }
+
+
+
+      @media (max-width: 1100px) {
+
         .hero {
+
           flex-direction: column;
-          text-align: center;
+
         }
-        #hero-img {
-          margin-top: 40px;
-          margin-right: 0;
+
+
+
+        .hero-title {
+
+          font-size: 100px;
+
         }
-        .hero-buttons button {
-          margin-bottom: 15px;
+
+
+
+        .about-grid {
+
+          grid-template-columns: 1fr;
+
         }
+
       }
+
+
+
+      @media (max-width: 768px) {
+
+        header {
+
+          padding: 20px;
+
+          flex-direction: column;
+
+          gap: 20px;
+
+        }
+
+
+
+        nav {
+
+          flex-wrap: wrap;
+
+          justify-content: center;
+
+        }
+
+
+
+        .hero,
+
+        section {
+
+          padding: 70px 20px;
+
+        }
+
+
+
+        .hero-title {
+
+          font-size: 70px;
+
+        }
+
+
+
+        .section-title {
+
+          font-size: 60px;
+
+        }
+
+
+
+        .hero-desc {
+
+          flex-direction: column;
+
+        }
+
+
+
+        .hero-right {
+
+          width: 100%;
+
+        }
+
+
+
+        .image-card img {
+
+          height: 500px;
+
+        }
+
+
+
+        .about-card h3 {
+
+          font-size: 50px;
+
+        }
+
+      }
+
+      /* New Contact Section Styles based on Screenshot 2026-05-12 161621.png */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contact-left h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 80px;
+  line-height: 1;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.contact-left h1 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.contact-badge {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 40px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+.badge-num {
+  background: var(--gold);
+  color: black;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.email-display {
+  font-size: 24px;
+  text-decoration: none;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.social-links-row {
+  display: flex;
+  gap: 15px;
+}
+
+.social-pill {
+  padding: 12px 24px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.social-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Form Styling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #666;
+  font-weight: 600;
+}
+
+.form-group input, 
+.form-group textarea {
+  background: #091111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 18px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+  border-color: var(--gold);
+}
+
+.form-group textarea {
+  height: 180px;
+  resize: none;
+}
+
+.char-limit {
+  text-align: right;
+  font-size: 10px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.submit-btn-gold {
+  background: var(--gold);
+  color: black;
+  border: none;
+  padding: 18px 35px;
+  border-radius: 40px;
+  font-weight: 600;
+  width: fit-content;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.submit-btn-gold:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(215, 161, 44, 0.2);
+}
+
+/* Responsive fix for contact */
+@media (max-width: 1100px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
+
+nav a {
+  text-decoration: none;
+  color: #b8b8b8;
+  font-size: 16px;
+  transition: 0.3s;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+  border-radius: 10px;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: white;
+}
+
     </style>
+
   </head>
+
+
+
   <body>
+
+
+
     <header>
-      <h2>Moeez Ahmad</h2>
-      <div>
-        <nav style="display: inline">
-          <a href="#home">Home</a> <a href="#about">About</a>
-          <a href="#skills">Skills</a> <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <button class="theme-btn" onclick="toggleTheme()">🌙 Theme</button>
-      </div>
+
+      <div class="logo">Moeez<span>.</span></div>
+
+
+
+      <nav>
+        <a href="#"><span>01</span> Home</a>
+
+        <a href="#projects"><span>02</span> Work</a>
+
+        <a href="#about"><span>03</span> About</a>
+
+        <a href="#skills"><span>04</span> Skills</a>
+
+        <a href="#contact"><span>05</span> Contact</a>
+
+      </nav>
+
+
+
+      <a href="#contact" class="talk-btn">Let's talk ↗</a>
+
     </header>
-    <section class="hero" id="home">
-      <div class="hero-text">
-        <h1>Moeez Ahmad</h1>
-        <h2 id="typing"></h2>
-        <p>
-          I build scalable, modern, and visually appealing full-stack
-          applications using MERN Stack technologies.
-        </p>
-        <div class="hero-buttons">
-          <button>Hire Me</button> <button>Download CV</button>
+
+
+
+    <section class="hero">
+
+
+
+      <div class="hero-left">
+
+
+
+        <h1 class="hero-title">
+
+          Moeez <br />
+
+          <span>Ahmad.</span>
+
+        </h1>
+
+
+
+        <div class="hero-desc">
+
+
+
+          <div>
+
+            <p>
+
+            MERN Stack developer passionate about building responsive, modern and user-friendly web applications while continuously learning and improving my skills.
+
+              
+
+
+            </p>
+
+
+
+            <div class="hero-buttons">
+
+              <button class="hire">Download CV</button>
+
+
+            </div>
+
+          </div>
+
+
+
+          <div class="currently">
+
+            <small>CURRENTLY</small>
+
+
+
+            <h4>
+
+              Building production interfaces & exploring motion as a
+
+              first-class material.
+
+            </h4>
+
+          </div>
+
+
+
         </div>
+
       </div>
-      <img
-        id="hero-img"
-        src="https://www.bing.com/th/id/OIP.PO0h3QFTE6nYIttaZlJTLwHaJQ?w=160&h=211&c=8"
-        alt="Moeez Ahmad"
-      />
-    </section>
-    <section id="about" class="reveal">
-      <h2>About Me</h2>
-      <div class="about">
-        I am a passionate MERN Stack Developer with expertise in creating
-        modern, responsive, and scalable web applications using MongoDB,
-        Express.js, React.js, and Node.js.
+
+
+
+      <div class="hero-right">
+
+        <div class="image-card">
+
+          <img
+
+            src="moizz.jpeg"
+
+            alt=""
+
+          />
+
+
+
+          <div class="status">
+
+          
+
+            <span>● ONLINE</span>
+
+          </div>
+
+        </div>
+
       </div>
+
+
+
     </section>
-    <section id="skills" class="reveal">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div class="skill">HTML5</div>
-        <div class="skill">CSS3</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">React.js</div>
-        <div class="skill">Node.js</div>
-        <div class="skill">Express.js</div>
-        <div class="skill">MongoDB</div>
-        <div class="skill">Git & GitHub</div>
+
+
+
+    <section id="about">
+
+
+
+      <h2 class="section-title">
+
+        About <span>me</span>
+
+      </h2>
+
+
+
+      <div class="about-grid">
+
+
+
+        <div class="about-card">
+
+
+
+          <small>HELLO, I'M</small>
+
+
+
+          <h3>
+
+            A MERN developer who treats the browser like a
+
+            <span>canvas.</span>
+
+          </h3>
+
+
+
+          <p>
+
+            I build scalable, modern web applications using MongoDB,
+
+            Express.js, React.js and Node.js — but I care just as much
+
+            about how a product looks, moves and feels.
+
+          </p>
+
+
+
+        </div>
+
+
+
+        <div class="value-boxes">
+
+
+
+          <div class="value">
+
+            <h4>Ship fast</h4>
+
+
+
+            <p>
+
+              Production interfaces with motion, polish and clean
+
+              architecture.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="value">
+
+            <h4>Full-stack</h4>
+
+
+
+            <p>
+
+              From schema design to pixel-perfect UI — I own the
+
+              entire development pipeline.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="value">
+
+            <h4>Craft-led</h4>
+
+
+
+            <p>
+
+              I obsess over spacing, responsiveness, animations and
+
+              overall user experience.
+
+            </p>
+
+          </div>
+
+
+
+        </div>
+
+
+
       </div>
+
     </section>
-    <section id="projects" class="reveal">
-      <h2>Projects</h2>
-      <div class="projects">
-        <div class="project">
+
+
+
+    <section id="skills">
+
+
+
+      <h2 class="section-title">
+
+        Stack I <span>live in</span>
+
+      </h2>
+
+
+
+      <div class="skills-grid">
+
+
+
+        <div class="skill-card">
+
+          <h3>Frontend</h3>
+
+
+
+          <ul>
+
+            <li>React.js</li>
+
+            <li>Next.js</li>
+
+            <li>JavaScript</li>
+
+            <li>HTML5</li>
+
+            <li>CSS3</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="skill-card">
+
+          <h3>Backend</h3>
+
+
+
+          <ul>
+
+            <li>Node.js</li>
+
+            <li>Express.js</li>
+
+            <li>MongoDB</li>
+
+            <li>REST APIs</li>
+
+            <li>JWT Auth</li>
+
+          </ul>
+
+        </div>
+
+
+
+        <div class="skill-card">
+
+          <h3>Tools & Workflow</h3>
+
+
+
+          <ul>
+
+            <li>Git & GitHub</li>
+
+            <li>Vite</li>
+
+            <li>Postman</li>
+
+            <li>VS Code</li>
+
+            <li>Netlify</li>
+
+          </ul>
+
+        </div>
+
+
+
+      </div>
+
+    </section>
+
+
+
+    <section id="projects">
+
+
+
+      <h2 class="section-title">
+
+        Selected <span>projects</span>
+
+      </h2>
+
+
+
+      <div class="projects-grid">
+
+
+
+        <div class="project-card">
+
           <h3>Portfolio Website</h3>
-          <p>Modern portfolio website with dark mode and animations.</p>
-          <a href="#" target="_blank">Live Demo</a>
-          <a href="https://github.com/MoeezDV/Portfolio" target="_blank">GitHub</a>
+
+
+
+          <p>
+
+            Modern developer portfolio with premium UI, responsive
+
+            layout and smooth animations.
+
+          </p>
+
+
+
+          <div class="project-links">
+
+            <a href="#">Live Demo</a>
+
+            <a href="https://github.com/MoeezDV/Portfolio">GitHub</a>
+
+          </div>
+
         </div>
-        <div class="project">
+
+
+
+        <div class="project-card">
+
           <h3>Fitness Website</h3>
-          <p>Responsive fitness website with modern landing page UI.</p>
-          <a href="https://fitness-web-5c53c5.netlify.app" target="_blank"
-            >Live Demo</a
-          >
-          <a href="https://github.com/MoeezDV/Fitness-website" target="_blank"
-            >GitHub</a
-          >
+
+
+
+          <p>
+
+            Responsive fitness landing page with modern sections,
+
+            animations and clean UX.
+
+          </p>
+
+
+
+          <div class="project-links">
+
+            <a href="https://fitness-web-5c53c5.netlify.app">Live Demo</a>
+
+            <a href="https://github.com/MoeezDV/Fitness-website">GitHub</a>
+
+          </div>
+
         </div>
-        <div class="project">
-          <h3>Password Generator</h3>
-          <p>Secure password generator with customizable options.</p>
-          <a href="https://password-gen-bb1c1b.netlify.app" target="_blank"
-            >Live Demo</a
-          >
-          <a href="https://github.com/MoeezDV/password-gen" target="_blank"
-            >GitHub</a
-          >
-        </div>
-        <div class="project">
+
+
+
+        <div class="project-card">
+
           <h3>Netflix Clone</h3>
+
+
+
           <p>
-            Streaming platform clone with user authentication and content
-            browsing.
+
+            Streaming platform clone with authentication and movie
+
+            browsing experience.
+
           </p>
-          <a href="https://netfllixclone-df1e80.netlify.app" target="_blank"
-            >Live Demo</a
-          >
-          <a href="https://github.com/MoeezDV/Netflix-colne" target="_blank"
-            >GitHub</a
-          >
+
+
+
+          <div class="project-links">
+
+            <a href="https://netfllixclone-df1e80.netlify.app">Live Demo</a>
+
+            <a href="https://github.com/MoeezDV/Netflix-colne">GitHub</a>
+
+          </div>
+
         </div>
-        <div class="project">
-          <h3>Transport Website</h3>
-          <p>Modern transport website with booking and tracking features.</p>
-          <a href="https://transport-web-44db1b.netlify.app" target="_blank"
-            >Live Demo</a
-          >
-          <a href="https://github.com/MoeezDV/Transport-WEB" target="_blank"
-            >GitHub</a
-          >
-        </div>
-        <div class="project">
-          <h3>Interest Calculator</h3>
-          <p>
-            Financial calculator for computing simple and compound interest.
-          </p>
-          <a
-            href="https://intrest-calculator-dfeab3.netlify.app"
-            target="_blank"
-            >Live Demo</a
-          >
-          <a
-            href="https://github.com/MoeezDV/Intrest-Calculator"
-            target="_blank"
-            >GitHub</a
-          >
-        </div>
-        <div class="project">
+
+
+
+        <div class="project-card">
+
           <h3>Weather App</h3>
-          <p>Weather forecasting app using API integration.</p>
-          <a href="https://weather-api-e648f8.netlify.app" target="_blank"
-            >Live Demo</a
-          >
-          <a href="https://github.com/MoeezDV/Weather-Api" target="_blank"
-            >GitHub</a
-          >
+
+
+
+          <p>
+
+            API-based weather forecasting application with responsive UI.
+
+          </p>
+
+
+
+          <div class="project-links">
+
+            <a href="https://weather-api-e648f8.netlify.app">Live Demo</a>
+
+            <a href="https://github.com/MoeezDV/Weather-Api">GitHub</a>
+
+          </div>
+
         </div>
-        <div class="project">
+
+
+
+        <div class="project-card">
+
           <h3>Chat Application</h3>
-          <p>Real-time chat application using Socket.io.</p>
-          <a href="#" target="_blank">Live Demo</a>
-          <a href="https://github.com/MoeezDV/Chat-APP" target="_blank"
-            >GitHub</a
-          >
+
+
+
+          <p>
+
+            Real-time chat application powered by Socket.io with
+
+            instant messaging and responsive design.
+
+          </p>
+
+
+
+          <div class="project-links">
+
+            <a href="#">Live Demo</a>
+
+            <a href="https://github.com/MoeezDV/Chat-APP">GitHub</a>
+
+          </div>
+
         </div>
+
+
+
+        <div class="project-card">
+
+          <h3>Login / Signup App</h3>
+
+
+
+          <p>
+
+            Authentication system with login, signup, protected routes,
+
+            form validation and MERN integration.
+
+          </p>
+
+
+
+          <div class="project-links">
+
+            <a href="#">Live Demo</a>
+
+            <a href="#">GitHub</a>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="project-card">
+
+          <h3>Password Generator</h3>
+
+
+
+          <p>
+
+            Secure password generator with customizable settings and
+
+            responsive design.
+
+          </p>
+
+
+
+          <div class="project-links">
+
+            <a href="https://password-gen-bb1c1b.netlify.app">Live Demo</a>
+
+            <a href="https://github.com/MoeezDV/password-gen">GitHub</a>
+
+          </div>
+
+        </div>
+
+        <div class="project-card">
+
+          <h3>Intrest Calculator</h3>
+
+
+
+          <p>
+
+            Financial calculator for computing simple and compound interest
+
+  with clean UI, fast calculations and responsive design.
+
+          </p>
+
+
+
+          <div class="project-links">
+
+            <a href="#">Live Demo</a>
+
+            <a href="#">GitHub</a>
+
+          </div>
+
+        </div>
+
+
+
       </div>
+
     </section>
-    <section id="contact" class="reveal">
-      <h2>Contact</h2>
-      <div class="contact">
-        <p>Email: moeezahmad5659@gmail.com</p>
-        <p>Location: Lahore, Pakistan</p>
+
+
+
+    <section id="contact">
+  <div class="contact-grid">
+    
+    <!-- Left Column -->
+    <div class="contact-left">
+      <div class="contact-badge">
+        <span class="badge-num">04</span> CONTACT
       </div>
-    </section>
-    <footer>© 2025 Moeez Ahmad — MERN Stack Developer</footer>
-    <script>
-      function toggleTheme() {
-        document.body.classList.toggle("dark");
-      }
-      const reveals = document.querySelectorAll(".reveal");
-      function revealOnScroll() {
-        reveals.forEach((el) => {
-          if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-            el.classList.add("active");
-          }
-        });
-      }
-      window.addEventListener("scroll", revealOnScroll);
-      revealOnScroll();
-      const typingEl = document.getElementById("typing");
-      const texts = [
-        "Full-Stack Developer",
-        "MERN Stack Specialist",
-        "React Enthusiast",
-      ];
-      let index = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      function type() {
-        const current = texts[index];
-        if (isDeleting) {
-          typingEl.textContent = current.substring(0, charIndex--);
-          if (charIndex < 0) {
-            isDeleting = false;
-            index = (index + 1) % texts.length;
-            setTimeout(type, 500);
-            return;
-          }
-        } else {
-          typingEl.textContent = current.substring(0, charIndex++);
-          if (charIndex > current.length) {
-            isDeleting = true;
-            setTimeout(type, 1000);
-            return;
-          }
-        }
-        setTimeout(type, isDeleting ? 50 : 100);
-      }
-      type();
-    </script>
+      
+      <h1>Have a project <br>in mind? <br><span>Let's build.</span></h1>
+      
+      <a href="mailto:moeezahmad5659@gmail.com" class="email-display">
+        moeezahmad5659@gmail.com ↗
+      </a>
+
+      <div class="social-links-row">
+        <a href="https://github.com/MoeezDV" class="social-pill">GitHub ↗</a>
+        <a href="#" class="social-pill">LinkedIn ↗</a>
+      </div>
+    </div>
+
+    <!-- Right Column (The Form) -->
+    <form class="contact-form">
+      <div class="form-group">
+        <label>YOUR NAME</label>
+        <input type="text" placeholder="Name" required>
+      </div>
+
+      <div class="form-group">
+        <label>EMAIL</label>
+        <input type="email" placeholder="Email@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>PROJECT / MESSAGE</label>
+        <textarea placeholder="Tell me about your idea, timeline, and what success looks like..."></textarea>
+        <div class="char-limit">0/1000</div>
+      </div>
+
+      <button type="submit" class="submit-btn-gold">
+        <span>➤</span> Send message
+      </button>
+    </form>
+
+  </div>
+</section>
+
+
+
+    <footer>
+
+      © 2025 Moeez Ahmad — MERN Stack Developer
+
+    </footer>
+
+
+
   </body>
-</html>
+
+</html> 
